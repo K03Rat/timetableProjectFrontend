@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import CourseList from "./components/CourseList";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import TimetableSlotList from "./components/TimetableStlotList";
+import ModuleList from "./components/ModuleList";
+import StudentList from "./components/studentList";
+import LecturerList from "./components/LecturerList";
+import CourseTimetable from "./components/CourseTimetable";
+import Header from "./components/Header"; // Import the Header component
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <Header /> {/* Include the Header component */}
+      <Routes>
+        <Route path="/timetables" element={<TimetableSlotList />} />
+        <Route path="/courses" element={<CourseList />} />
+        <Route path="/modules" element={<ModuleList />} />
+        <Route path="/students" element={<StudentList />} />
+        <Route path="/lecturers" element={<LecturerList />} />
+        <Route path="/timetableFor" element={<CourseTimetable />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

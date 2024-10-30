@@ -1,42 +1,90 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Container styling for the table with bold borders */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Removes gaps between borders for a clean look */
+  margin: 20px 0;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #007bff; /* Bold border around the entire table */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Table header styling with bold borders */
+table thead th {
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  text-align: left;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 2px solid rgb(0, 123, 255); /* Bold borders around each header cell */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Table body cell styling with bold borders */
+table tbody td {
+  padding: 10px;
+  border: 2px solid #ddd; /* Bold border around each cell */
+}
+
+/* Zebra striping for rows */
+table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Hover effect on rows */
+table tbody tr:hover {
+  background-color: #e0f7fa;
+}
+
+/* Responsive table adjustments */
+@media screen and (max-width: 768px) {
+  table {
+    font-size: 0.9em;
   }
-  to {
-    transform: rotate(360deg);
+  /* Stack cells on top of each other */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+  /* Hide table headers in small view */
+  thead tr {
+    display: none;
+  }
+  /* Each cell has its own label */
+  tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #ddd; /* Bold bottom border to separate cells */
+  }
+  tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-right: 10px;
+    color: #007bff;
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Header.css */
+.app-header {
+  background-color: rgb(0, 123, 255); /* Blue background color */
+  padding: 10px 20px; /* Spacing around the header */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
-.card {
-  padding: 2em;
+.app-title {
+  color: #fff; /* White text for the title */
+  font-size: 24px; /* Size of the title */
+  margin: 0; /* Remove default margin */
 }
-
-.read-the-docs {
-  color: #888;
+.nav-container {
+  justify-content: space-between; /* Distribute space evenly */
+  width: 100%; /* Full width */
 }
