@@ -1,4 +1,78 @@
-/* Container styling for the table with bold borders */
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* High z-index to ensure it overlays on top of other content */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; /* Ensure it stays centered */
+  z-index: 10000; /* Ensure modal content stays on top of overlay */
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 1.5em; /* Slightly bigger heading */
+  color: #007bff;
+}
+
+.modal-content label {
+  display: block;
+  margin: 8px 0;
+  color: #333;
+  font-weight: bold; /* Bold labels for clarity */
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin: 4px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Modal Buttons */
+.modal-content button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px; /* Rounded corners */
+}
+
+.modal-content button[type="button"] {
+  background-color: #ccc; /* Gray cancel button */
+}
+
+/* Focus effects for inputs */
+.modal-content input:focus {
+  outline: none;
+  border: 2px solid #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Focus outline */
+}
+
+.modal-content button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Focus outline for button */
+}
+
+/* Table Container styling */
 table {
   width: 100%;
   border-collapse: collapse; /* Removes gaps between borders for a clean look */
@@ -11,7 +85,7 @@ table {
   border: 2px solid #007bff; /* Bold border around the entire table */
 }
 
-/* Table header styling with bold borders */
+/* Table header styling */
 table thead th {
   padding: 12px;
   background-color: #007bff;
@@ -22,7 +96,7 @@ table thead th {
   border: 2px solid rgb(0, 123, 255); /* Bold borders around each header cell */
 }
 
-/* Table body cell styling with bold borders */
+/* Table body cell styling */
 table tbody td {
   padding: 10px;
   border: 2px solid #ddd; /* Bold border around each cell */
@@ -43,6 +117,7 @@ table tbody tr:hover {
   table {
     font-size: 0.9em;
   }
+
   /* Stack cells on top of each other */
   table,
   thead,
@@ -52,10 +127,12 @@ table tbody tr:hover {
   tr {
     display: block;
   }
+
   /* Hide table headers in small view */
   thead tr {
     display: none;
   }
+
   /* Each cell has its own label */
   tbody td {
     display: flex;
@@ -64,6 +141,7 @@ table tbody tr:hover {
     border: none;
     border-bottom: 2px solid #ddd; /* Bold bottom border to separate cells */
   }
+
   tbody td::before {
     content: attr(data-label);
     font-weight: bold;
@@ -72,19 +150,121 @@ table tbody tr:hover {
     color: #007bff;
   }
 }
-/* Header.css */
-.app-header {
-  background-color: rgb(0, 123, 255); /* Blue background color */
-  padding: 10px 20px; /* Spacing around the header */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+
+/* Styling for action buttons with spacing */
+table tbody td .action-button {
+  margin-right: 8px; /* Space between buttons */
 }
 
-.app-title {
-  color: #fff; /* White text for the title */
-  font-size: 24px; /* Size of the title */
-  margin: 0; /* Remove default margin */
+button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
-.nav-container {
-  justify-content: space-between; /* Distribute space evenly */
-  width: 100%; /* Full width */
+
+button.delete-button {
+  background-color: #dc3545; /* Different color for delete button */
+}
+
+button.update-button {
+  background-color: #28a745; /* Different color for update button */
+}
+/* Style the header */
+.app-header {
+  padding: 10px 20px;
+  justify-content: space-evenly;
+}
+
+/* Style the navigation container */
+.nav-links {
+  justify-content: space-evenly; /* Space out buttons across the full width */
+  align-items: center;
+  gap: 10px; /* Space between buttons */
+}
+
+/* Style each button */
+.nav-links a {
+  text-align: center;
+}
+
+.nav-links button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  width: 100%; /* Make button fill its container */
+  cursor: pointer;
+}
+
+.nav-links button:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it overlays other content */
+}
+
+/* Modal Content */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Lecturer Item Display */
+.lecturer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.lecturers-list {
+  max-height: 150px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* Add Lecturer Section */
+.add-lecturer {
+  color: #0056b3;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Actions */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.remove-button {
+  color: #f00;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.lecturer-item {
+  color: black;
 }
