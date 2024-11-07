@@ -17,6 +17,110 @@ export const getTimetableSlots = async (): Promise<TimetableSlot[]> => {
     throw new Error("Failed to fetch timetable slots"); // Optionally re-throw the error
   }
 };
+export const deleteTimetableSlot = async (timetableSlotId: number) => {
+  try {
+    const response = await apiClient.delete(`/timetables/${timetableSlotId}`);
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+// Function to create a new timetable slot
+export const createTimetableSlot = async (timetableSlot: TimetableSlot) => {
+  try {
+    // Format time correctly with leading zeros for hours and minutes
+    const formattedHours =
+      timetableSlot.time.hours < 10
+        ? `0${timetableSlot.time.hours}`
+        : timetableSlot.time.hours;
+    const formattedMinutes =
+      timetableSlot.time.minutes < 10
+        ? `0${timetableSlot.time.minutes}`
+        : timetableSlot.time.minutes;
+    const startTime = `${formattedHours}:${formattedMinutes}:00`; // Ensure startTime is HH:MM:00
+
+    // Prepare data for the API request
+    const data = {
+      semester: timetableSlot.semester,
+      startTime, // Use formatted start time
+      dayOfWeek: timetableSlot.day,
+      venue: timetableSlot.venue, // Ensure the venue is correctly referenced
+      type: timetableSlot.type, // Slot type (e.g., lecture, tutorial, lab)
+      module: timetableSlot.module, // Module details
+    };
+
+    // Log the data that will be sent to the server
+    console.log("Creating timetable slot with data:", data);
+
+    // Make API request to create the timetable slot
+    const response = await apiClient.post("/timetables", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    // Log the successful response data
+    console.log("Timetable slot created successfully:", response.data);
+    return response.data; // Return response data for further processing if needed
+  } catch (error) {
+    // Improved error handling with a clear message
+    console.error(
+      "Error creating timetable slot:",
+      error.response?.data || error.message || error
+    );
+    throw error; // Re-throw the error if you need to handle it further up
+  }
+};
+
+// Function to update an existing timetable slot
+export const updateTimetableSlot = async (timetableSlot: TimetableSlot) => {
+  try {
+    // Format time correctly with leading zeros for hours and minutes
+    const formattedHours =
+      timetableSlot.time.hours < 10
+        ? `0${timetableSlot.time.hours}`
+        : timetableSlot.time.hours;
+    const formattedMinutes =
+      timetableSlot.time.minutes < 10
+        ? `0${timetableSlot.time.minutes}`
+        : timetableSlot.time.minutes;
+    const startTime = `${formattedHours}:${formattedMinutes}:00`; // Ensure startTime is HH:MM:00
+
+    // Prepare data for the API request
+    const data = {
+      semester: timetableSlot.semester,
+      startTime, // Use formatted start time
+      dayOfWeek: timetableSlot.day,
+      venue: timetableSlot.venue, // Ensure the venue is correctly referenced
+      type: timetableSlot.type, // Slot type (e.g., lecture, tutorial, lab)
+      module: timetableSlot.module, // Module details
+    };
+
+    // Log the data that will be sent to the server
+    console.log("Creating timetable slot with data:", data);
+
+    // Make API request to create the timetable slot
+    const response = await apiClient.put(
+      `/timetables/${timetableSlot.id}`,
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    // Log the successful response
+    console.log("Timetable slot updated successfully:", response.data);
+    return response.data; // Return the updated data if needed
+  } catch (error) {
+    // Improved error handling
+    console.error(
+      "Error updating timetable slot:",
+      error.response?.data || error.message || error
+    );
+    throw error; // Re-throw the error for higher-level handling
+  }
+};
 
 export const getTimetableForCourse = async (
   courseId: string
