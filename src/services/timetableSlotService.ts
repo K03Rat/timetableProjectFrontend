@@ -10,6 +10,7 @@ export const getTimetableSlots = async (): Promise<TimetableSlot[]> => {
     const normalizedSlots: TimetableSlot[] = response.data.map(
       normalizeTimetableSlot
     );
+    console.log(response.data);
 
     return normalizedSlots;
   } catch (error) {

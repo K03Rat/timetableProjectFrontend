@@ -1,3 +1,4 @@
+import { HttpStatusCode } from "axios";
 import { Student } from "../interfaces/Student";
 import apiClient from "./apiClient";
 
