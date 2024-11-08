@@ -75,9 +75,14 @@ const TimetableSlotList: React.FC = () => {
           )
         );
       } else {
-        // Create a new slot
-        await createTimetableSlot(updatedSlot); // Create a new slot on the server
-        setTimetableSlots((prevSlots) => [...prevSlots, updatedSlot]);
+        // Create a new slot and capture the returned slot with the assigned ID
+        const createdSlot = await createTimetableSlot(updatedSlot); // Create a new slot on the server
+
+        // Set the ID of updatedSlot to match the ID returned by the server
+        setTimetableSlots((prevSlots) => [
+          ...prevSlots,
+          { ...updatedSlot, id: createdSlot.id },
+        ]);
       }
       setIsModalOpen(false); // Close the modal after saving
     } catch (error) {
@@ -102,6 +107,7 @@ const TimetableSlotList: React.FC = () => {
           <table>
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Module Name</th>
                 <th>Module Code</th>
                 <th>Semester</th>
@@ -115,6 +121,7 @@ const TimetableSlotList: React.FC = () => {
             <tbody>
               {timetableSlots.map((slot) => (
                 <tr key={slot.id}>
+                  <td>{slot.id}</td>
                   <td>{slot.module.moduleName}</td>
                   <td>{slot.module.moduleCode}</td>
                   <td>{slot.semester}</td>
