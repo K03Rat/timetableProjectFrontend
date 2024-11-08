@@ -98,6 +98,7 @@ export const updateTimetableSlot = async (timetableSlot: TimetableSlot) => {
     };
 
     // Log the data that will be sent to the server
+    console.log("Creating timetable slot with id:", timetableSlot.id);
     console.log("Creating timetable slot with data:", data);
 
     // Make API request to create the timetable slot
